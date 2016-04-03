@@ -47,7 +47,7 @@ public class MainPanel extends JPanel
 		return q;
 	}
 	
-	private int getNumNeighbors(int x, int y)
+	public int getNumNeighbors(int x, int y)
 	{
 		int size = _size;
 		int leftX = (x - 1) % size;
