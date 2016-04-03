@@ -29,23 +29,6 @@ public class MainPanel extends JPanel
 	{
 		return _cells;
 	}
-
-	private int convertToInt(int x)
-	{
-		int c = 0;
-		String padding = "0";
-
-		while (c < _r)
-		{
-			String l = new String("0");
-			padding += l;
-			c++;
-		}
-	
-		String n = padding + String.valueOf(x);
-		int q = Integer.parseInt(n);
-		return q;
-	}
 	
 	public int getNumNeighbors(int x, int y)
 	{
@@ -71,7 +54,7 @@ public class MainPanel extends JPanel
 		if (_cells[x][upY].getAlive())        { numNeighbors++; }
 		if (_cells[x][downY].getAlive())      { numNeighbors++; }
 		
-		return convertToInt(numNeighbors);
+		return numNeighbors;
 	}
 
 	private boolean iterateCell(int x, int y)
