@@ -103,7 +103,7 @@ public class FileAccess
 	 */
 	public static ArrayList<String> loadFile(String fileName)
 	{
-		List<String> lines = new ArrayList<String>();
+		ArrayList<String> lines = new ArrayList<String>();
 
 		try
 		{
