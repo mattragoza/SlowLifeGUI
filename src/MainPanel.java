@@ -30,6 +30,16 @@ public class MainPanel extends JPanel
 		return _cells;
 	}
 	
+	public void setBackupCells(Cell[][] cells)
+	{
+		_backupCells = cells;
+	}
+	
+	public Cell[][] getBackupCells()
+	{
+		return _backupCells;
+	}
+	
 	public int getNumNeighbors(int x, int y)
 	{
 		int size = _size;
@@ -243,12 +253,13 @@ public class MainPanel extends JPanel
 				Thread.sleep(20);
 			}
 			catch (InterruptedException iex) { }
-
+			/*
 			for (int j=0; j < _maxCount; j++)
 			{
 				_r += (j % _size) % _maxCount;
 				_r += _maxCount;
 			}
+			*/
 			_r = origR;
 			backup();
 			calculateNextIteration();
