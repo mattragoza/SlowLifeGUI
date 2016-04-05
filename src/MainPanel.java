@@ -97,7 +97,6 @@ public class MainPanel extends JPanel
 
 	private void displayIteration(boolean[][] nextIter)
 	{
-		System.out.println("\tDisplaying...");
 		for (int j = 0; j < _size; j++)
 		{
 			for (int k = 0; k < _size;  k++)
