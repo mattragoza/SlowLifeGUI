@@ -67,12 +67,9 @@ public class MainPanel extends JPanel
 		return numNeighbors;
 	}
 
-	private boolean iterateCell(int x, int y)
+	public boolean iterateCell(boolean alive, int numNeighbors)
 	{
 		boolean toReturn = false;
-		boolean alive = _cells[x][y].getAlive();
-		int numNeighbors = getNumNeighbors(x, y);
-
 		if (alive)
 		{
 			if (numNeighbors < 2 || numNeighbors > 3)
@@ -115,18 +112,19 @@ public class MainPanel extends JPanel
 	 * For each of the cells, calculate what their
 	 * state will be for the next iteration.
 	 */
-	private void calculateNextIteration()
+	public boolean[][] calculateNextIteration()
 	{
-		System.out.println("\tCalculating..");
 		boolean[][] nextIter = new boolean[_size][_size];
 		for (int j = 0; j < _size; j++)
 		{
 			for (int k = 0; k < _size; k++)
 			{
-				nextIter[j][k] = iterateCell(j, k);
+				int numNeighbors = getNumNeighbors(j, k);
+				boolean alive = _cells[j][k].getAlive();
+				nextIter[j][k] = iterateCell(alive, numNeighbors);
 			}
 		}
-		displayIteration(nextIter);
+		return nextIter;
 	}
 
 	/*
@@ -233,7 +231,12 @@ public class MainPanel extends JPanel
 	public void run()
 	{
 		backup();
-		calculateNextIteration();
+		
+		System.out.println("\tCalculating...");
+		boolean[][] nextIter = calculateNextIteration();
+		
+		System.out.println("\tDisplaying...");
+		displayIteration(nextIter);
 	}
 
 	/*
@@ -245,22 +248,13 @@ public class MainPanel extends JPanel
 		while (_running)
 		{
 			System.out.println("Running...");
-			int origR = _r;
 			try
 			{
 				Thread.sleep(20);
 			}
 			catch (InterruptedException iex) { }
 			
-			for (int j=0; j < _maxCount; j++)
-			{
-				_r += (j % _size) % _maxCount;
-				_r += _maxCount;
-			}
-			
-			_r = origR;
-			backup();
-			calculateNextIteration();
+			run();
 		}
 	}
 
