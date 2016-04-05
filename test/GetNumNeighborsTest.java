@@ -17,39 +17,88 @@ public class GetNumNeighborsTest
 	@Test
 	public void testCornerZeroNeighbors()
 	{
+		int size = mp.getCellsSize();
+		mp.getCells()[size-1][size-1].setAlive(false);
+		mp.getCells()[size-1][0].setAlive(false);
+		mp.getCells()[size-1][1].setAlive(false);
+		mp.getCells()[0][size-1].setAlive(false);
+		mp.getCells()[0][1].setAlive(false);
+		mp.getCells()[1][size-1].setAlive(false);
+		mp.getCells()[1][0].setAlive(false);
+		mp.getCells()[1][1].setAlive(false);
 		assertEquals(mp.getNumNeighbors(0, 0), 0);
 	}
 	
 	@Test
 	public void testEdgeZeroNeighbors()
 	{
+		int size = mp.getCellsSize();
+		mp.getCells()[size-1][0].setAlive(false);
+		mp.getCells()[size-1][1].setAlive(false);
+		mp.getCells()[size-1][2].setAlive(false);
+		mp.getCells()[0][0].setAlive(false);
+		mp.getCells()[0][2].setAlive(false);
+		mp.getCells()[1][0].setAlive(false);
+		mp.getCells()[1][1].setAlive(false);
+		mp.getCells()[1][2].setAlive(false);
 		assertEquals(mp.getNumNeighbors(0, 1), 0);
 	}
 	
 	@Test
 	public void testInteriorZeroNeighbors()
 	{
+		mp.getCells()[0][0].setAlive(false);
+		mp.getCells()[0][1].setAlive(false);
+		mp.getCells()[0][2].setAlive(false);
+		mp.getCells()[1][0].setAlive(false);
+		mp.getCells()[1][2].setAlive(false);
+		mp.getCells()[2][0].setAlive(false);
+		mp.getCells()[2][1].setAlive(false);
+		mp.getCells()[2][2].setAlive(false);
 		assertEquals(mp.getNumNeighbors(1, 1), 0);
 	}
 	
 	@Test
 	public void testCornerOneNeighbors()
 	{
+		int size = mp.getCellsSize();
+		mp.getCells()[size-1][size-1].setAlive(false);
+		mp.getCells()[size-1][0].setAlive(false);
+		mp.getCells()[size-1][1].setAlive(false);
+		mp.getCells()[0][size-1].setAlive(false);
 		mp.getCells()[0][1].setAlive(true);
+		mp.getCells()[1][size-1].setAlive(false);
+		mp.getCells()[1][0].setAlive(false);
+		mp.getCells()[1][1].setAlive(false);
 		assertEquals(mp.getNumNeighbors(0, 0), 1);
 	}
 	
 	@Test
 	public void testEdgeOneNeighbors()
 	{
+		int size = mp.getCellsSize();
+		mp.getCells()[size-1][0].setAlive(false);
+		mp.getCells()[size-1][1].setAlive(false);
+		mp.getCells()[size-1][2].setAlive(false);
+		mp.getCells()[0][0].setAlive(false);
 		mp.getCells()[0][2].setAlive(true);
+		mp.getCells()[1][0].setAlive(false);
+		mp.getCells()[1][1].setAlive(false);
+		mp.getCells()[1][2].setAlive(false);
 		assertEquals(mp.getNumNeighbors(0, 1), 1);
 	}
 	
 	@Test
 	public void testInteriorOneNeighbors()
 	{
+		mp.getCells()[0][0].setAlive(false);
+		mp.getCells()[0][1].setAlive(false);
+		mp.getCells()[0][2].setAlive(false);
+		mp.getCells()[1][0].setAlive(false);
 		mp.getCells()[1][2].setAlive(true);
+		mp.getCells()[2][0].setAlive(false);
+		mp.getCells()[2][1].setAlive(false);
+		mp.getCells()[2][2].setAlive(false);
 		assertEquals(mp.getNumNeighbors(1, 1), 1);
 	}
 	
